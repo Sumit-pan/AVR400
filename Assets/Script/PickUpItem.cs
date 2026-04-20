@@ -20,4 +20,9 @@ public class PickupItem : MonoBehaviour, IInteractable
     {
         return "Press E to pick up " + itemName;
     }
+
+    public void ConsumeAfterRestock()
+    {
+        Destroy(gameObject);
+    }
 }

@@ -21,6 +21,11 @@ public class PlayerInteraction : MonoBehaviour
         {
             currentInteractable.Interact(this);
         }
+
+        if (Input.GetKeyDown(KeyCode.R) && currentInteractable is OrderStation orderStation)
+        {
+            orderStation.CycleSelection();
+        }
     }
 
     void DetectInteractable()
@@ -59,16 +64,17 @@ public class PlayerInteraction : MonoBehaviour
 
         heldItem = item;
 
-        Rigidbody rb = item.GetComponent<Rigidbody>();
-        Collider col = item.GetComponent<Collider>();
-
-        if (rb != null)
+        Rigidbody[] rigidbodies = item.GetComponentsInChildren<Rigidbody>(true);
+        foreach (Rigidbody rb in rigidbodies)
         {
             rb.isKinematic = true;
             rb.useGravity = false;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
         }
 
-        if (col != null)
+        Collider[] colliders = item.GetComponentsInChildren<Collider>(true);
+        foreach (Collider col in colliders)
         {
             col.enabled = false;
         }
@@ -87,16 +93,15 @@ public class PlayerInteraction : MonoBehaviour
 
         item.transform.SetParent(null);
 
-        Rigidbody rb = item.GetComponent<Rigidbody>();
-        Collider col = item.GetComponent<Collider>();
-
-        if (rb != null)
+        Rigidbody[] rigidbodies = item.GetComponentsInChildren<Rigidbody>(true);
+        foreach (Rigidbody rb in rigidbodies)
         {
             rb.isKinematic = false;
             rb.useGravity = true;
         }
 
-        if (col != null)
+        Collider[] colliders = item.GetComponentsInChildren<Collider>(true);
+        foreach (Collider col in colliders)
         {
             col.enabled = true;
         }

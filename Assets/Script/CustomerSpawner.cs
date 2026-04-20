@@ -9,20 +9,38 @@ public class CustomerSpawner : MonoBehaviour
     public Transform checkoutPoint;
     public Transform exitPoint;
     public CheckoutCounter checkoutCounter;
-    public float spawnInterval = 10f;
+    public float minSpawnInterval = 4f;
+    public float maxSpawnInterval = 10f;
 
     private float timer;
+    private float nextSpawnInterval;
+
+    void Start()
+    {
+        ResetSpawnTimer();
+    }
 
     void Update()
     {
+        if (GameManager.Instance != null && !GameManager.Instance.IsStoreOpen)
+        {
+            return;
+        }
+
         timer += Time.deltaTime;
 
-        if (timer >= spawnInterval)
+        if (timer >= nextSpawnInterval)
         {
             Debug.Log("Trying to spawn customer...");
             SpawnCustomer();
-            timer = 0f;
+            ResetSpawnTimer();
         }
+    }
+
+    void ResetSpawnTimer()
+    {
+        timer = 0f;
+        nextSpawnInterval = Random.Range(minSpawnInterval, maxSpawnInterval);
     }
 
     void SpawnCustomer()

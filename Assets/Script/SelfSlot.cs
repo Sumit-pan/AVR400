@@ -11,6 +11,7 @@ public class ShelfSlot : MonoBehaviour, IInteractable
     [Header("Shelf Stock")]
     public int currentStock = 0;
     public int maxStock = 10;
+    public int stockAddedPerItem = 5;
 
     [SerializeField] private string storedProductName = "";
     [SerializeField] private float storedProductPrice = 0f;
@@ -155,10 +156,21 @@ public class ShelfSlot : MonoBehaviour, IInteractable
 
     void AddStockFromPlayer(PlayerInteraction player, GameObject held)
     {
-        player.DropHeldItem();
-        Destroy(held);
+        PickupItem pickup = held.GetComponent<PickupItem>();
 
-        currentStock++;
+        player.DropHeldItem();
+
+        if (pickup != null)
+        {
+            pickup.ConsumeAfterRestock();
+        }
+        else
+        {
+            Destroy(held);
+        }
+
+        int stockToAdd = Mathf.Max(1, stockAddedPerItem);
+        currentStock = Mathf.Clamp(currentStock + stockToAdd, 0, maxStock);
         Debug.Log(name + " restocked. Current stock: " + currentStock);
     }
 
