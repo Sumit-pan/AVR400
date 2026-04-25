@@ -7,11 +7,14 @@ public class GameManager : MonoBehaviour
 
     public float money = 0f;
     public bool isStoreOpen = false;
+    public float gameCompleteTarget = 200f;
 
     private OrderStation orderStation;
     private StoreSign storeSign;
+    private bool gameCompleted;
 
     public bool IsStoreOpen => isStoreOpen;
+    public bool IsGameCompleted => gameCompleted;
 
     private void Awake()
     {
@@ -35,6 +38,11 @@ public class GameManager : MonoBehaviour
     {
         money += amount;
         Debug.Log("Money: $" + money.ToString("F2"));
+
+        if (!gameCompleted && money >= gameCompleteTarget)
+        {
+            CompleteGame();
+        }
     }
 
     public bool TrySpendMoney(float amount)
@@ -54,8 +62,26 @@ public class GameManager : MonoBehaviour
 
     public void ToggleStoreOpen()
     {
+        if (gameCompleted)
+        {
+            Debug.Log("The game is already completed.");
+            return;
+        }
+
         isStoreOpen = !isStoreOpen;
         Debug.Log("Store is now " + (isStoreOpen ? "OPEN" : "CLOSED"));
+
+        if (storeSign != null)
+        {
+            storeSign.RefreshVisuals();
+        }
+    }
+
+    void CompleteGame()
+    {
+        gameCompleted = true;
+        isStoreOpen = false;
+        Debug.Log("Game completed! Sales reached $" + money.ToString("F2"));
 
         if (storeSign != null)
         {

@@ -1182,6 +1182,7 @@ MonoBehaviour:
   startingStock: 5
   currentStock: 0
   maxStock: 10
+  stockAddedPerItem: 5
   storedProductName: 
   storedProductPrice: 0
   displayItemInstance: {fileID: 0}
@@ -10749,6 +10750,7 @@ MonoBehaviour:
   startingStock: 5
   currentStock: 0
   maxStock: 10
+  stockAddedPerItem: 5
   storedProductName: 
   storedProductPrice: 0
   displayItemInstance: {fileID: 0}
@@ -23987,6 +23989,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd734b61e69cde7478bc0d557d222fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropPoint: {fileID: 0}
+  dropOffset: {x: 0, y: 0.35, z: 0}
+  dropScale: {x: 0.22, y: 0.08, z: 0.22}
+  moneyColor: {r: 0.22, g: 0.7, b: 0.28, a: 1}
+  tossForce: 1.5
 --- !u!4 &806991202
 Transform:
   m_ObjectHideFlags: 0
@@ -34178,6 +34185,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyText: {fileID: 1651292735}
+  gameCompleteText: {fileID: 0}
+  objectiveText: {fileID: 0}
+  pointerText: {fileID: 0}
+  pointerSymbol: +
+  pointerSize: {x: 32, y: 32}
+  pointerColor: {r: 1, g: 1, b: 1, a: 0.92}
+  pointerFontSize: 30
 --- !u!4 &1113488025
 Transform:
   m_ObjectHideFlags: 0
@@ -34187,7 +34201,7 @@ Transform:
   m_GameObject: {fileID: 1113488023}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.24, y: 69.75, z: 331.81}
+  m_LocalPosition: {x: -19.24, y: 69.86, z: 331.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42270,6 +42284,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   money: 0
+  isStoreOpen: 1
+  gameCompleteTarget: 200
 --- !u!4 &1370398467
 Transform:
   m_ObjectHideFlags: 0
@@ -44684,6 +44700,7 @@ MonoBehaviour:
   startingStock: 5
   currentStock: 0
   maxStock: 10
+  stockAddedPerItem: 5
   storedProductName: 
   storedProductPrice: 0
   displayItemInstance: {fileID: 0}
@@ -47965,6 +47982,7 @@ MonoBehaviour:
   startingStock: 5
   currentStock: 0
   maxStock: 10
+  stockAddedPerItem: 5
   storedProductName: 
   storedProductPrice: 0
   displayItemInstance: {fileID: 0}
@@ -52890,6 +52908,7 @@ MonoBehaviour:
   startingStock: 5
   currentStock: 0
   maxStock: 10
+  stockAddedPerItem: 5
   storedProductName: 
   storedProductPrice: 0
   displayItemInstance: {fileID: 0}
@@ -55942,6 +55961,7 @@ MonoBehaviour:
   startingStock: 5
   currentStock: 0
   maxStock: 10
+  stockAddedPerItem: 5
   storedProductName: 
   storedProductPrice: 0
   displayItemInstance: {fileID: 0}
@@ -60372,6 +60392,7 @@ MonoBehaviour:
   startingStock: 5
   currentStock: 0
   maxStock: 10
+  stockAddedPerItem: 5
   storedProductName: 
   storedProductPrice: 0
   displayItemInstance: {fileID: 0}
@@ -61989,7 +62010,8 @@ MonoBehaviour:
   checkoutPoint: {fileID: 326729687}
   exitPoint: {fileID: 606837430}
   checkoutCounter: {fileID: 806991201}
-  spawnInterval: 5
+  minSpawnInterval: 4
+  maxSpawnInterval: 10
 --- !u!4 &1954720394
 Transform:
   m_ObjectHideFlags: 0
@@ -64581,6 +64603,7 @@ MonoBehaviour:
   startingStock: 5
   currentStock: 0
   maxStock: 10
+  stockAddedPerItem: 5
   storedProductName: 
   storedProductPrice: 0
   displayItemInstance: {fileID: 0}
